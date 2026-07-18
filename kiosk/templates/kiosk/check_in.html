@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Welcome to Grand Horizon Resort</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f172a;
+        }
+        .split-screen {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+        .left-side {
+            flex: 1.2;
+            background: linear-gradient(rgba(15, 23, 42, 0.2), rgba(15, 23, 42, 0.6)), 
+                        url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1000') no-repeat center center;
+            background-size: cover;
+            position: relative;
+        }
+        @media (max-width: 992px) {
+            .left-side { display: none; }
+        }
+        .brand-overlay {
+            position: absolute;
+            bottom: 10%;
+            left: 8%;
+            color: white;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+        .right-side {
+            flex: 1;
+            background-color: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            border-left: 2px solid #d4af37;
+        }
+        .form-container {
+            width: 100%;
+            max-width: 420px;
+        }
+        .luxury-card {
+            background: #1e293b;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        .text-gold {
+            color: #d4af37;
+            letter-spacing: 2px;
+        }
+        .form-label-gold {
+            color: #94a3b8;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .form-control-luxury {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            color: white;
+            padding: 12px 16px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .form-control-luxury:focus {
+            background-color: #0f172a;
+            border-color: #d4af37;
+            color: white;
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+        }
+        .btn-luxury-gold {
+            background: linear-gradient(135deg, #d4af37, #b8952e);
+            color: #0f172a;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .btn-luxury-gold:hover {
+            background: linear-gradient(135deg, #f1c43f, #d4af37);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+            color: #0f172a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="split-screen">
+        <div class="left-side">
+            <div class="brand-overlay">
+                <h1 class="fw-light text-uppercase mb-0 fs-2">Experience</h1>
+                <h1 class="fw-bold text-uppercase tracking-widest display-4" style="color: #d4af37;">Unmatched Luxury</h1>
+                <p class="fs-5 opacity-75 mt-2">Welcome back to your ultimate sanctuary away from home.</p>
+            </div>
+        </div>
+
+        <div class="right-side">
+            <div class="form-container">
+                <div class="luxury-card">
+                    <div class="text-center mb-5">
+                        <h2 class="fw-bold text-uppercase text-gold mb-1 fs-3">Grand Horizon</h2>
+                        <span class="text-muted small text-uppercase tracking-widest" style="font-size: 0.7rem;">In-Room Concierge Portal</span>
+                    </div>
+
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <label class="form-label form-label-gold text-uppercase">Primary Guest Name</label>
+                            <input type="text" name="guest_name" class="form-control form-control-luxury" required placeholder="e.g. Alexander Mercer">
+                        </div>
+                        
+                        <div class="mb-5">
+                            <label class="form-label form-label-gold text-uppercase">Assigned Suite / Room</label>
+                            <select name="room_number" class="form-select form-control-luxury">
+                                <option value="101">Room 101 — Classic King</option>
+                                <option value="204">Room 204 — Deluxe Ocean View</option>
+                                <option value="305">Room 305 — Grand Royal Penthouse</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-luxury-gold w-100 text-uppercase shadow">Initialize Kiosk Terminal</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
